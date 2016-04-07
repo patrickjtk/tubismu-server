@@ -11,8 +11,8 @@ Parse.Cloud.define('omset_report', function(req, res){
 		  
 		  res.success(results[0].attributes);
 		},
-		error: function() {
-		  res.error("movie lookup failed");
+		error: function(error) {
+		  res.error(error.message);
 		}
 	});
 });
