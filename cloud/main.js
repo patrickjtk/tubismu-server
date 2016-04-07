@@ -9,7 +9,7 @@ Parse.Cloud.define('omset_report', function(req, res){
 	query.find({
 		success: function(results) {
 		  
-		  res.success(results[i]);
+		  res.success(results[0].attributes);
 		},
 		error: function() {
 		  res.error("movie lookup failed");
