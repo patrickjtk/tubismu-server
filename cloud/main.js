@@ -5,13 +5,13 @@ Parse.Cloud.define('hello', function(req, res) {
 
 Parse.Cloud.define('omset_report_monthly', function(req, res){
 	var query = new Parse.Query("Transaksi");
-	console.log(req.param.startMonth);
-	console.log(req.param.endMonth);
+	console.log(req.params.startMonth);
+	console.log(req.params.endMonth);
 	query.equalTo("objectId", "DZzREmkddM");
 	query.find({
 		success: function(results) {
 		  
-		  res.success(results[0].attributes);
+		  res.success(req.params);
 		},
 		error: function(error) {
 		  res.error(error.message);
