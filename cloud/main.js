@@ -8,7 +8,7 @@ Parse.Cloud.define('omset_report_monthly', function(req, res){
 	console.log(req.params.startMonth);
 	console.log(req.params.endMonth);
 	query.greaterThanOrEqualTo("createdAt", new Date(req.params.startMonth));
-	var endMonth = new Date(endMonth);
+	var endMonth = new Date(req.params.endMonth);
 	endMonth.setMonth(endMonth.getMonth() + 1);
 	query.lessThanOrEqualTo("createdAt", endMonth);
 	
