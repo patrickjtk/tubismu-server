@@ -31,14 +31,14 @@ Parse.Cloud.define('omset_report_monthly', function(req, res){
 		success: function(results) {
 			var dat = [];
 			if(results.length > 0){
-		    	var date =  results[0].attributes.createdAt.getMonth();
+		    	var date =  results[0].attributes.tanggalTrx.getMonth();
 			    var count = 0;
 			    for (var i = 0; i < results.length; i++) {
 			    	var object = results[i];
-					if(date != object.attributes.createdAt.getMonth()){
-						console.log("beda");
+					if(date != object.attributes.tanggalTrx.getMonth()){
+						console.log("push");
 						dat.push({date: date, count: count});
-						date =  results[i].attributes.createdAt.getMonth();
+						date =  results[i].attributes.tanggalTrx.getMonth();
 						count = 0;
 					}
 					console.log(object.attributes.produk.length);
@@ -46,6 +46,7 @@ Parse.Cloud.define('omset_report_monthly', function(req, res){
 			      		count  = count + object.attributes.produk[j].harga;
 			      	};
 			      	if(i+1 == results.length){
+			      		console.log("push end");
 			      		dat.push({date: date, count: count});
 			      	}
 			      // alert(object.id + ' - ' + object.get('playerName'));
