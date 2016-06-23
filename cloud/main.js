@@ -55,7 +55,7 @@ Parse.Cloud.define('produk_report_monthly', function(req, res){
 	endMonth.setMonth(endMonth.getMonth() + 1);
 	query.lessThanOrEqualTo("createdAt", endMonth);
 	query.include("Produk");
-	query.orderByAscending("produkName");
+	query.ascending("produkName");
 	query.find({
 		success: function(results) {
 
