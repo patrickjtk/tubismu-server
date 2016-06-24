@@ -14,6 +14,7 @@ Parse.Cloud.define('omset_report_monthly', function(req, res){
 
 	query.find({
 		success: function(results) {
+			console.log(results);
 			var dat = [];
 			if(results.length > 0){
 		    	var date =  results[0].attributes.tanggalTrx.getMonth();
