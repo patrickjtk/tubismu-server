@@ -15,6 +15,8 @@ Parse.Cloud.define('omset_report_monthly', function(req, res){
 	query.find({
 		success: function(results) {
 			// console.log(results);
+			var dateString = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+				"Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 			var dat = [];
 			if(results.length > 0){
 		    	var date =  results[0].get("createdAt").getMonth();
@@ -23,7 +25,7 @@ Parse.Cloud.define('omset_report_monthly', function(req, res){
 			    	var object = results[i];
 					if(date != object.get("createdAt").getMonth()){
 						console.log("push");
-						dat.push({date: date, count: count});
+						dat.push({date: dateString[date], count: count});
 						date =  object.get("createdAt").getMonth();
 						count = 0;
 					}
@@ -31,7 +33,7 @@ Parse.Cloud.define('omset_report_monthly', function(req, res){
 				    
 			      	if(i+1 == results.length){
 			      		console.log("push end");
-			      		dat.push({date: date, count: count});
+			      		dat.push({date: dateString[date], count: count});
 			      	}
 			      // alert(object.id + ' - ' + object.get('playerName'));
 			      
