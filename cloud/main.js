@@ -14,23 +14,21 @@ Parse.Cloud.define('omset_report_monthly', function(req, res){
 
 	query.find({
 		success: function(results) {
-			console.log(results);
+			// console.log(results);
 			var dat = [];
 			if(results.length > 0){
-		    	var date =  results[0].attributes.tanggalTrx.getMonth();
+		    	var date =  results[0].get("createdAt").getMonth();
 			    var count = 0;
 			    for (var i = 0; i < results.length; i++) {
 			    	var object = results[i];
-					if(date != object.attributes.tanggalTrx.getMonth()){
+					if(date != object.get("createdAt").getMonth()){
 						console.log("push");
 						dat.push({date: date, count: count});
-						date =  results[i].attributes.tanggalTrx.getMonth();
+						date =  object.get("createdAt").getMonth();
 						count = 0;
 					}
-					console.log(object.attributes.produk.length);
-				    for (var j = 0; j < object.attributes.produk.length; j++) {
-			      		count  = count + object.attributes.produk[j].harga;
-			      	};
+					count  = count + object.get("total");
+				    
 			      	if(i+1 == results.length){
 			      		console.log("push end");
 			      		dat.push({date: date, count: count});
